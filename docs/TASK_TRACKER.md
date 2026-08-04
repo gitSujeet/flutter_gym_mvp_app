@@ -140,7 +140,37 @@ Last Updated: August 5, 2026
 - [ ] Google Sign-In fully tested end-to-end
 - [ ] Forgot password screen + Firebase reset email
 
-### 🟢 Nice to Have (Polish & Production)
+### � Code Review Fixes (Found via thorough review — August 5, 2026)
+
+#### Critical Crashes
+- [ ] **`auth_provider.dart`** — `.requireValue` called on unresolved `FutureProvider<PrefsService>` → `StateError` crash on startup. Fix: initialize `PrefsService` eagerly in `main()` and pass via a regular `Provider`.
+- [ ] **`active_workout_screen.dart`** — `Navigator.of(context)..pop()..pop()` cascades on `void` return → compile error. Fix: use `context.go()` from GoRouter instead.
+
+#### High Priority — Broken Logic / Missing Features
+- [ ] **`active_workout_screen.dart`** — `_finishWorkout()` never calls `workoutNotifierProvider.completeWorkout()` → workout completion never saved to Firestore.
+- [ ] **`splash_screen.dart`** — Auth stream not awaited → signed-in users redirected to login/onboarding instead of home.
+- [ ] **`goal_setup_screen.dart`** — Selected goal & fitness level collected but never saved to `UserModel` or Firestore.
+- [ ] **`chat_bubble.dart`** — `_TypingIndicator` calls `.repeat()` twice on each `AnimationController` → assertion error on animation.
+- [ ] **`nutrition_screen.dart`** — Fully hardcoded. Wire `todaysMealsProvider`, `dailyCaloriesProvider`, `dailyProteinProvider` from `nutrition_provider.dart`.
+- [ ] **`workout_detail_screen.dart`** — Fully hardcoded. Fetch real workout data from `workoutsProvider` using `workoutId`.
+- [ ] **`active_workout_screen.dart`** — Exercise list is hardcoded. Load real exercises from `workoutsProvider` using `workoutId`.
+- [ ] **`progress_screen.dart`** — Fully hardcoded. Wire `completedWorkoutsCountProvider` and `firestore_service.getWeightHistory()`.
+- [ ] **`daily_summary_card.dart`** — Hardcoded values. Wire `dailyCaloriesProvider`, `dailyProteinProvider`, `dailyCarbsProvider`.
+- [ ] **`progress_ring.dart`** — Hardcoded 68% progress. Wire real provider data.
+- [ ] **`profile_screen.dart`** — Hardcoded workout count `'24'`. Wire `completedWorkoutsCountProvider`.
+
+#### Medium Priority — UX / Dead Code
+- [ ] **`login_screen.dart`** — "Forgot Password?" button is `onTap: () {}` — implement `FirebaseAuth.sendPasswordResetEmail()`.
+- [ ] **`profile_screen.dart`** — Edit Profile, Notifications, Help & Support, Privacy Policy — all `onTap: () {}`.
+- [ ] **`settings_screen.dart`** — Toggle states (notifications, units) never persisted to `PrefsService`.
+- [ ] **`api_client.dart`** — Entire file is dead code, never used. Remove or implement.
+- [ ] **`app_dimensions.dart`** — All constants unused. Adopt across screens or remove.
+- [ ] **`hive_service.dart`** — `saveWorkouts()`, `saveMeals()`, `getMeals()` methods never called. Wire or remove.
+- [ ] **`prefs_service.dart`** — `saveAuthToken()` never called after sign-in → `clearAuthToken()` is a no-op.
+
+---
+
+### �🟢 Nice to Have (Polish & Production)
 
 #### UI/UX
 - [ ] Custom app icon (replace default Flutter icon)
@@ -184,7 +214,8 @@ Last Updated: August 5, 2026
 | Shared Widgets | 8 | 0 | 8 |
 | Documentation | 7 | 0 | 7 |
 | Git & Deployment | 5 | 0 | 5 |
+| Code Review Fixes | 0 | 19 | 19 |
 | Features (remaining) | 0 | 20 | 20 |
-| **Total** | **88** | **25** | **113** |
+| **Total** | **88** | **44** | **132** |
 
-**Overall Progress: ~78% complete**
+**Overall Progress: ~67% complete**
