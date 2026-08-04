@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "934125665421",
+    "project_id": "flutter-gym-mvp-app",
+    "storage_bucket": "flutter-gym-mvp-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934125665421:android:918db3c79373be48ba76c4",
+        "android_client_info": {
+          "package_name": "com.sujeet.ai_fitness_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "934125665421-4tcjr2d1ae0bt5ancb3qqcd81ugrs8n4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUFT9h4cyPGPZJOberWxlX1-IlabuMDMM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "934125665421-4tcjr2d1ae0bt5ancb3qqcd81ugrs8n4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "934125665421-ilrvkb3gakd34ro9povbq7g85npm9gsa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.skpapp.aiGymApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
